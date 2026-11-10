@@ -1,0 +1,47 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0}canvas{display:block}</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script src="common.js"></script>
+<script>
+const ctx = document.getElementById('c').getContext('2d');
+function draw() {
+  BOIL = 2;
+  ctx.fillStyle = COL.paper; ctx.fillRect(0, 0, W, H);
+  const r = rng(5); for (let i = 0; i < 9000; i++) { ctx.fillStyle = `rgba(120,100,70,${(r() * 0.05).toFixed(3)})`; ctx.fillRect(r() * W, r() * H, 1 + r() * 2, 1 + r() * 2); }
+  // selo
+  sPoly(ctx, roundPts(250, 300, 580, 92, 46), { id: 'selo', closed: true, fill: COL.ink, stroke: null });
+  text(ctx, 'REVISÃO ENEM · 2º DIA', 540, 364, { font: F_DISPLAY, size: 52, align: 'center', color: '#fff' });
+  // título
+  const big = (s, y, size, col = COL.pink) => text(ctx, s, 540, y, { font: F_DISPLAY, size, align: 'center', color: col, outline: 12, shadow: col === COL.pink ? '#B9474F' : null });
+  big('MÉDIA,', 560, 190);
+  big('MEDIANA', 750, 190);
+  big('E MODA', 940, 190);
+  // gráfico com linha da média
+  const base = 1400, bw = 120, gap = 40, x0 = 540 - (5 * bw + 4 * gap) / 2, vals = [6, 8, 5, 9, 7], unit = 40;
+  sPoly(ctx, [[x0 - 40, base], [x0 + 5 * bw + 4 * gap + 40, base]], { id: 'ax', lw: 6 });
+  vals.forEach((v, i) => {
+    const x = x0 + i * (bw + gap), h = v * unit;
+    sPoly(ctx, rectPts(x, base - h, bw, h), { id: 'b' + i, closed: true, fill: i === 3 ? COL.pink : (i % 2 ? '#A9D8EA' : '#BFE3F0'), lw: 5 });
+  });
+  const ym = base - 7 * unit;
+  sPoly(ctx, [[x0 - 40, ym], [x0 + 5 * bw + 4 * gap + 40, ym]], { id: 'ml', lw: 6, stroke: COL.ink, dash: [18, 12] });
+  text(ctx, 'média', x0 - 30, ym - 16, { size: 48, color: COL.ink });
+  // selo "TEM PEGADINHA!" girado
+  ctx.save(); ctx.translate(780, 1080); ctx.rotate(-0.12);
+  sPoly(ctx, roundPts(-250 + 10, -62 + 12, 500, 124, 30), { id: 'stsh', closed: true, fill: '#B9474F', stroke: null });
+  sPoly(ctx, roundPts(-250, -62, 500, 124, 30), { id: 'st', closed: true, fill: '#F2B33D', lw: 6 });
+  text(ctx, 'TEM PEGADINHA!', 0, 22, { font: F_DISPLAY, size: 62, align: 'center', color: COL.ink });
+  ctx.restore();
+  // faixa inferior: em 1 minuto + cronômetro
+  sPoly(ctx, roundPts(170, 1500, 740, 150, 75), { id: 'pill', closed: true, fill: COL.pink, lw: 6 });
+  const cx = 285, cy = 1575;
+  sPoly(ctx, circlePts(cx, cy, 52, 28), { id: 'clk', closed: true, fill: COL.paper, lw: 6 });
+  sPoly(ctx, [[cx, cy - 52], [cx, cy - 72]], { id: 'clkn', lw: 10 });
+  sPoly(ctx, [[cx - 22, cy + 2], [cx - 6, cy + 18], [cx + 24, cy - 16]], { id: 'clkc', lw: 9, stroke: COL.pink });
+  text(ctx, 'EM 1 MINUTO', 610, 1602, { font: F_DISPLAY, size: 80, align: 'center', color: '#fff', outline: 8 });
+}
+let READY = false;
+(async () => {
+  for (const [n, f] of [['Luckiest Guy', 'LuckiestGuy.ttf'], ['Patrick Hand', 'PatrickHand.ttf']]) { const ff = new FontFace(n, `url(fonts/${f})`); await ff.load(); document.fonts.add(ff); }
+  draw(); READY = true;
+})();
+</script></body></html>
