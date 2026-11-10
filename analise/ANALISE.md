@@ -3,6 +3,7 @@
 Formato dos 3 vídeos: vertical 1080×1920, 30 fps, 20 s, 31 s e 37 s. Idioma espanhol (narração + texto na tela).
 As folhas de quadros (1 quadro a cada 0,5 s, com timestamp) estão em [`quadros/`](quadros/).
 Análise de movimento com **todos os quadros** (30 fps): [`QUADRO_A_QUADRO.md`](QUADRO_A_QUADRO.md).
+Decupagem plano a plano dos primeiros 10 s de cada vídeo: [`DECUPAGEM_10S.md`](DECUPAGEM_10S.md).
 
 | # | Duração | Tema | Paleta | Arquivo de quadros |
 |---|---|---|---|---|

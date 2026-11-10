@@ -72,8 +72,9 @@ Cada letra surge borrada e transparente e foca em ~4 q. As letras aparecem em se
 
 Efeito no After Effects: **Text Animator** com Opacity 0 %, Blur 20, Position Y +15 px e **Range Selector por caractere**, Ease High ~80 %. Vale ligar o "Randomize Order" para algumas letras chegarem fora de ordem: em "cerebro" o "b" aparece borrado depois do "r".
 
-### Palavra de ligação (sans bold): entra **inteira**
-Desfocada e cinza clara, foca e escurece em **3–8 q** ("usan" q 268–276; "vas" q 145–150). Não tem movimento de posição, só foco e opacidade.
+### Palavra de ligação (sans bold): **inteira** ou **digitada**
+- **Inteira** (V3, V2): desfocada e cinza clara, foca e escurece em **3–8 q** ("usan" q 268–276; "vas" q 145–150). Não tem movimento de posição, só foco e opacidade.
+- **Digitada** (V1): ~1 letra por quadro, cada letra entrando borrada ("El mayor" q 6–13; "Desde pequeños nos dijeron" q 124–157). Ver [`DECUPAGEM_10S.md`](DECUPAGEM_10S.md).
 
 ### Bloco de texto
 - As linhas se acumulam palavra por palavra **no ritmo da fala** e o bloco inteiro **sobe devagar** (~5–15 px/s) enquanto cresce (V3 q 120–143; V2 q 732–779).
@@ -92,7 +93,7 @@ Desfocada e cinza clara, foca e escurece em **3–8 q** ("usan" q 268–276; "va
 ## 5. Movimento de objetos e "câmera" por cena
 
 ### V1 (preto/dourado, 594 q)
-- **12 planos, média de 1,65 s cada.** Medição: o 1º plano **afasta** (zoom acumulado 0,50×, a moeda vai se afastando), e os planos seguintes alternam push-in (+15 a +31 %/s) e pull-out (−7 a −15 %/s). Essa alternância **dentro/fora** dá a sensação de "respiração".
+- **12 planos, média de 1,65 s cada.** Medição: o 1º plano **afasta** (zoom acumulado 0,50×: o maço de notas entra voando e depois vai se afastando), e os planos seguintes alternam push-in (+15 a +31 %/s) e pull-out (−7 a −15 %/s). Essa alternância **dentro/fora** dá a sensação de "respiração".
 - Planos com deslocamento vertical grande (−360 a −520 px e +360 a +700 px): são os **whip-pans verticais** entre ideias (q ~120, ~290, ~390). No plano de 13,1 s, a câmera vai para o canto (−695 px em X e +703 em Y) com rotação de −17,6°, uma diagonal com giro.
 - O feixe de luz laranja (≈ q 315–345) é animado **por dentro** do plano. A câmera fica parada.
 
@@ -109,7 +110,7 @@ Desfocada e cinza clara, foca e escurece em **3–8 q** ("usan" q 268–276; "va
 
 ### V3 (branco/preto, 1.124 q)
 - **Cérebro inicial (q 0–38):** começa **grande e borrado** e encolhe até caber no medalhão (q 0–6). O anel tracejado **gira** (~5°/q). Neurônios borrados nos cantos.
-- **Lupa (q 39–69):** passa grande pela tela da esquerda para a direita (wipe), depois fica no canto. Estrobo de 5 q.
+- **Lupa (q 39–69):** entra pelo canto superior direito enquanto um painel preto sobe de baixo (wipe com borda inclinada) e divide a tela em branco/preto. Depois, estrobo de 5 q.
 - **Olho (q 70–143):** aparece como uma **linha** (pálpebra fechada, q 71) e **abre** em ~6 q. **Pisca** duas vezes (q 85–87 e q 97–99) e depois cresce ~25 % até o q 143. Push-in lento.
 - **Apps (q 145–192):** ícones com glow entram de baixo/direita e **flutuam** (deriva de ~1 px/q, cada um em velocidade diferente = profundidade).
 - **Fotos (q 197–267):** o card fica fixo e só a foto troca, com o flash de silhueta.
