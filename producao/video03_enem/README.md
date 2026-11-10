@@ -20,3 +20,12 @@ Contas conferidas: (6+8+5+9+7)/5 = 7 · mediana de 5,6,7,8,9 = 7 · (5+7)/2 = 6 
 ```bash
 cd producao/video03_enem && node render.js video ../saida/video03.mp4
 ```
+
+## Versão com voz (80 s)
+
+**Arquivo:** [`../saida/video03_revisao_enem_media_mediana_moda_COM_VOZ.mp4`](../saida/) · 1080×1920 · 30 fps · 80 s · com narração
+
+- A narração ([`audio/narracao.mp3`](audio/)) tem 80 s e **não foi cortada**: o vídeo foi re-cronometrado para ela.
+- Os tempos de cada palavra foram obtidos com reconhecimento de voz local (Vosk, modelo pt), em [`audio/narracao_palavras.json`](audio/).
+- [`sync.json`](sync.json) liga cada evento da animação ao segundo da fala (ex.: quadro 190 → "seis" aos 7,4 s; quadro 1290 → "aí entra o chefe" aos 56,2 s). Entre as âncoras o tempo é interpolado. O traço continua tremendo no ritmo normal (a cada 4 quadros de saída).
+- Para outra voz: troque o MP3, ajuste os segundos em `sync.json` e rode `node render_sync.js ../saida/novo.mp4`.

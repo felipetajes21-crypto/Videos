@@ -288,8 +288,8 @@ function drawStepper(ctx, f) {
 
 // ---------- quadro ----------
 const CTX = document.getElementById('c').getContext('2d');
-function renderFrame(f) {
-  const ctx = CTX; BOIL = Math.floor(f / 4);
+function renderFrame(f, boilFrame) {
+  const ctx = CTX; BOIL = Math.floor((boilFrame ?? f) / 4); f = Math.round(f * 100) / 100;
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.drawImage(PAPER, 0, 0);
   const scenes = [[sceneMedia, 90, 470], [sceneMediana, 480, 890], [sceneModa, 900, 1190], [scenePegadinha, 1200, 1550], [sceneResumo, 1560, 1e9]];
   scenes.forEach(([fn, a, b]) => { const s = pop(f, a, b); if (s > 0) fn(ctx, f, s); });
