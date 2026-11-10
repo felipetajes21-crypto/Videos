@@ -36,5 +36,5 @@ Outra opção é levar o MP4 para o CapCut e ajustar a velocidade de cada trecho
 
 ## Limitações conhecidas
 
-- Os objetos (cérebro, caderno, ampulheta, celular, relógio) e as cenas de 1885 foram **desenhados por código**, porque a rede deste ambiente bloqueia o download das imagens geradas no ElevenLabs. Para chegar ao realismo das referências, dá para trocar cada objeto por um PNG 3D (os prompts estão no roteiro, seção 6): basta substituir a função de desenho correspondente em `objects.js` por um `drawImage`.
+- O **cérebro** vem de uma imagem gerada no Higgsfield (`assets/01_cerebro.png`, fundo removido). Os outros objetos (caderno, ampulheta, celular, relógio) e as cenas de 1885 ainda são **desenhados por código**, porque a rede deste ambiente bloqueia o download das imagens geradas no ElevenLabs. Para chegar ao realismo das referências, dá para trocar cada objeto por um PNG 3D (os prompts estão no roteiro, seção 6): basta substituir a função de desenho correspondente em `objects.js` por um `drawImage`.
 - O roteiro previa uma mão de escultura na cena 9 ("atalho"). Ela foi trocada por um feixe de luz sobre o medalhão.

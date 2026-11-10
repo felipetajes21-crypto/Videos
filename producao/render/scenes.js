@@ -353,6 +353,7 @@ function renderFrame(f) {
   const ff = new FontFace('PlayfairItalic', 'url(../fonts/f1.ttf)');
   await ff.load(); document.fonts.add(ff);
   await document.fonts.load(`700 60px "Inter"`); await document.fonts.load(`800 60px "Inter"`);
+  await new Promise(res => { const im = new Image(); im.onload = () => { window.BRAIN_IMG = im; res(); }; im.onerror = () => res(); im.src = '../assets/01_cerebro.png'; });
   buildAll();
   READY = true;
 })();

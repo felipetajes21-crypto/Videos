@@ -8,6 +8,13 @@ function brainPath(c) {
   c.moveTo(440, 330); c.ellipse(270, 320, 190, 95, 0.08, 0, Math.PI * 2);
 }
 function buildBrain() {
+  if (window.BRAIN_IMG) {
+    // imagem gerada no Higgsfield (fundo já removido)
+    const im = window.BRAIN_IMG, Bw = 640, Bh = Math.round(im.height * 640 / im.width);
+    const cv = mkCanvas(Bw, Bh), c = cv.getContext('2d');
+    c.drawImage(im, 0, 0, Bw, Bh);
+    OBJ.brain = cv; buildBrainParts(c, Bw, Bh); return;
+  }
   const Bw = 640, Bh = 540, cv = mkCanvas(Bw, Bh), c = cv.getContext('2d');
   const r = rng(42);
   // tronco e cerebelo (atrás)
@@ -78,13 +85,16 @@ function buildBrain() {
   c.restore();
   OBJ.brain = cv;
 
+  buildBrainParts(c, Bw, Bh);
+}
+function buildBrainParts(c, Bw, Bh) {
   // partículas: blocos de 8px com conteúdo
   const data = c.getImageData(0, 0, Bw, Bh).data, parts = [], S = 8, pr = rng(9);
-  for (let y = 0; y < Bh; y += S) for (let x = 0; x < Bw; x += S) {
+  for (let y = 0; y < Bh - S; y += S) for (let x = 0; x < Bw - S; x += S) {
     const a = data[((y + 4) * Bw + (x + 4)) * 4 + 3];
     if (a > 40) {
       const nx = x / Bw;
-      parts.push({ x, y, th: nx * 0.62 + pr() * 0.38, dx: 260 + pr() * 520, dy: -260 + pr() * 360, rs: 0.4 + pr() * 0.6 });
+      parts.push({ x, y, th: (1 - nx) * 0.62 + pr() * 0.38, dx: 260 + pr() * 520, dy: -260 + pr() * 360, rs: 0.4 + pr() * 0.6 });
     }
   }
   OBJ.brainParts = parts; OBJ.brainSize = [Bw, Bh];
