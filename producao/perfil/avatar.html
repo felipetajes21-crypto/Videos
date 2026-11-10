@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0}canvas{display:block}</style></head>
+<body><canvas id="c" width="1080" height="1080"></canvas>
+<script src="common.js"></script>
+<script>
+const S = 1080, ctx = document.getElementById('c').getContext('2d');
+function paper(bg) {
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, S, S);
+  const r = rng(5); for (let i = 0; i < 5000; i++) { ctx.fillStyle = `rgba(120,100,70,${(r() * 0.05).toFixed(3)})`; ctx.fillRect(r() * S, r() * S, 1 + r() * 2, 1 + r() * 2); }
+}
+function check(cx, cy, s, col, lw) { sPoly(ctx, [[cx - s * 0.42, cy + s * 0.02], [cx - s * 0.1, cy + s * 0.32], [cx + s * 0.45, cy - s * 0.32]], { id: 'ck', lw, stroke: col, amp: 2 }); }
+const OPTS = {
+  // A: check gigante dentro do círculo rosa (o ✓ da trilha de etapas)
+  A() {
+    paper(COL.paper);
+    sPoly(ctx, circlePts(560, 570, 400, 60), { id: 'sh', closed: true, fill: '#B9474F', stroke: null, amp: 3 });
+    sPoly(ctx, circlePts(540, 540, 400, 60), { id: 'c', closed: true, fill: COL.pink, lw: 14, amp: 3 });
+    check(540, 520, 480, '#fff', 60);
+    text(ctx, '1 MIN', 540, 860, { font: F_DISPLAY, size: 120, align: 'center', color: '#fff', outline: 10 });
+  },
+  // B: monograma "R1" com anel tracejado (como o medalhão dos vídeos)
+  B() {
+    paper(COL.paper);
+    sPoly(ctx, circlePts(540, 540, 430, 72), { id: 'ring', closed: true, lw: 12, stroke: COL.ink, dash: [44, 26], amp: 2.5 });
+    text(ctx, 'R1', 540, 690, { font: F_DISPLAY, size: 430, align: 'center', color: COL.pink, outline: 18, shadow: '#B9474F' });
+    sPoly(ctx, roundPts(330, 780, 420, 110, 55), { id: 'tag', closed: true, fill: COL.ink, stroke: null });
+    text(ctx, 'ENEM', 540, 862, { font: F_DISPLAY, size: 80, align: 'center', color: '#fff' });
+  },
+  // C: cronômetro desenhado com check no lugar dos ponteiros
+  C() {
+    paper(COL.pink); ctx.translate(540, 520); ctx.scale(0.86, 0.86); ctx.translate(-540, -560);
+    sPoly(ctx, roundPts(480, 110, 120, 80, 18), { id: 'btn', closed: true, fill: COL.paper, lw: 12, amp: 2.5 });
+    sPoly(ctx, [[540, 190], [540, 250]], { id: 'neck', lw: 26, stroke: COL.ink });
+    sPoly(ctx, [[790, 290], [840, 240]], { id: 'side', lw: 22, stroke: COL.ink });
+    sPoly(ctx, circlePts(555, 615, 340, 60), { id: 'sh', closed: true, fill: '#B9474F', stroke: null, amp: 3 });
+    sPoly(ctx, circlePts(540, 600, 340, 60), { id: 'face', closed: true, fill: COL.paper, lw: 14, amp: 3 });
+    for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2, r1 = 290, r2 = i % 3 ? 270 : 245; sPoly(ctx, [[540 + Math.sin(a) * r1, 600 - Math.cos(a) * r1], [540 + Math.sin(a) * r2, 600 - Math.cos(a) * r2]], { id: 't' + i, lw: i % 3 ? 7 : 12 }); }
+    check(540, 600, 380, COL.pink, 54);
+    ctx.setTransform(1, 0, 0, 1, 0, 0); text(ctx, '1 MIN', 540, 985, { font: F_DISPLAY, size: 92, align: 'center', color: '#fff', outline: 9 });
+  }
+};
+let READY = false;
+(async () => {
+  for (const [n, f] of [['Luckiest Guy', 'LuckiestGuy.ttf'], ['Patrick Hand', 'PatrickHand.ttf']]) { const ff = new FontFace(n, `url(fonts/${f})`); await ff.load(); document.fonts.add(ff); }
+  BOIL = 3; OPTS[location.hash.slice(1) || 'A'](); READY = true;
+})();
+</script></body></html>
